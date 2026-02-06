@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Text_wow.Tools;
 
-namespace Text_wow
+namespace Text_wow.PlayerStuff
 {
     internal class Player
     {

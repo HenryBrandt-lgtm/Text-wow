@@ -1,4 +1,4 @@
-﻿namespace Text_wow
+﻿namespace Text_wow.PlayerStuff
 {
     internal class PlayerCreation
     {

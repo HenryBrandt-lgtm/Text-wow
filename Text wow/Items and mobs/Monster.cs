@@ -26,7 +26,10 @@ namespace Text_wow
         {
             if (_health <= 0)
             {
-                Console.WriteLine($"Ditt slag tog {_name}s sista hp. GG EZ");
+                Console.WriteLine($"\nDitt slag tog {_name}s sista hp. GG EZ {_name} är död!");
+                Console.WriteLine("Press anykey för att gå viadre");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
     }
