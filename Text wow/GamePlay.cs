@@ -28,9 +28,6 @@ namespace Text_wow
             new CombatEvent().CombatEventvsGoblin(_monster, _weapon, _player);
             new LootEvent().GoblinsLoot(_monster, _weapon);
             new CombatEvent().CrawlThorughBushes(_player, _potion, _weapon);
-        }
-        
-        
-        
+        } 
     }
 }

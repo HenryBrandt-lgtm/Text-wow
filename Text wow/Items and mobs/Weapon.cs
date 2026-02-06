@@ -29,7 +29,7 @@ namespace Text_wow
         public void WeaponBreak()
         {
             Console.WriteLine($"Your {weaponName} gick sönder!");
-            weaponName = "fist";
+            weaponName = "smörkniv";
             damage = 5;
         }
     }

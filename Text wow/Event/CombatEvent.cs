@@ -74,9 +74,9 @@ namespace Text_wow.Event
                         continue;
                     case 3:
                         Console.Clear();
-                        if (weapon.weaponName == "fist")
+                        if (weapon.weaponName == "smörkniv")
                         {
-                            Console.WriteLine("Du har inga vapen och dina bebishänder är för spröda för att ens försöka");
+                            Console.WriteLine("En smörkniv var inte till mycket hjälp om du inte vill bre en macka.");
                         }
                         else
                         {
@@ -93,6 +93,7 @@ namespace Text_wow.Event
             }
             Console.CursorVisible = true;
         }
+
         static int ShowMenu(
     int left,
     int top,

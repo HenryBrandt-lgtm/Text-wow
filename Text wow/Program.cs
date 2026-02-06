@@ -7,12 +7,13 @@ namespace Text_wow
     {
         static void Main(string[] args)
         {
-            Weapon weapon = new Weapon("fist", 5);
+            Weapon weapon = new Weapon("smörkniv", 5);
             Monster monster = new Monster("Goblin", 30, 5);
             Player player = new Player("", "", 100);
             Potion potion = new Potion("Health Potion", 20);
 
             PlayerCreation playerCreation = new PlayerCreation("", "");
+
             playerCreation.CreateAccount();
 
             Console.WriteLine("Välkommen till text WoW!");
@@ -20,7 +21,7 @@ namespace Text_wow
             Console.Clear();
 
             Console.WriteLine($"Välkommen {player._name} av släktet {player._race}!");
-            Console.WriteLine($"Du kommer in i Azeroth med endast {weapon.weaponName} som gör {weapon.damage}dmg.");
+            Console.WriteLine($"Du kommer in i Azeroth med endast your {weapon.weaponName} som gör {weapon.damage}dmg.");
             Console.WriteLine($"I din bag har du 3st {potion._potionType} som ger {potion._healAmount}hp");
             Console.WriteLine("Lycka till!!!");
             Console.ReadKey();
