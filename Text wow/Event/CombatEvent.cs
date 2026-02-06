@@ -38,21 +38,46 @@ namespace Text_wow.Event
         {
             int grenar = 50;
             Console.WriteLine("Dina äventyr tar dig vidare i grottan till du går runt ett hörn och plötsligt inte kommer längre.");
-            Console.WriteLine("Din väg är täckt av taggiga grenar. Vad vill du göra?");
-
+            Console.WriteLine("Din väg är täckt av taggiga grenar. Vad vill du göra?\n  ");
+            ConsoleKeyInfo key;
+            int option = 1;
             bool stuckBehindBush = true;
+            bool isSelected = false;
+            (int left, int top) = Console.GetCursorPosition();
+            string color = "\u001b[36m-> ";
+            Console.CursorVisible = false;
             while (stuckBehindBush)
             {
-                Console.WriteLine($"\n1. Försök krypa igenom och riksera att ta skada. ditt hp är ju nu {player._health}");
-                Console.WriteLine($"2. Ta en potion. Du har just nu {potion._amount}{potion._potionType} kvar");
-                Console.WriteLine($"3. Slå sönder grenarna med din {weapon.weaponName}");
+                isSelected = false;
+                while (!isSelected)
+                {
+                    Console.SetCursorPosition(left, top);
+                    Console.WriteLine($"{(option == 1? color : "   ")}1. \u001b[0mFörsök krypa igenom och riksera att ta skada. ditt hp är ju nu {player._health}");
+                    Console.WriteLine($"{(option == 2 ? color : "   ")}2. \u001b[0mTa en potion. Du har just nu {potion._amount}st {potion._potionType} kvar");
+                    Console.WriteLine($"{(option == 3 ? color : "   ")}3. \u001b[0mSlå sönder grenarna med din {weapon.weaponName}");
 
+                    key = Console.ReadKey(true);
 
-                string playerChoice = Console.ReadLine();
-                switch (playerChoice)
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.DownArrow:
+                            option = (option == 3 ? 1 : option +1);
+                            break;
+                        case ConsoleKey.UpArrow:
+                            option= (option == 1 ? 3 : option -1);
+                            break;
+                        case ConsoleKey.Enter:
+                            isSelected = true;
+                            break;
+                        
+                    }
+                }
+                Console.ForegroundColor = ConsoleColor.Green;
+ 
+                switch (option)
                 {
 
-                    case "1":
+                    case 1:
                         Console.Clear();
                         Console.WriteLine("Du kikar omkring och ser ett litet hål bland grenarna som du tror att du kan krypa igenom. " +
                             "\nDu tar ett djupt andetag och försöker krypa igenom hålet.");
@@ -65,14 +90,14 @@ namespace Text_wow.Event
                         stuckBehindBush = false;
                         break;
 
-                    case "2":
+                    case 2:
                         Console.Clear();
                         potion.UsePotion(player);
                         Console.ReadKey();
                         Console.Clear();
                         Console.WriteLine("Vad vill du göra nu?");
                         continue;
-                    case "3":
+                    case 3:
                         Console.Clear();
                         if (weapon.weaponName == "fist")
                         {
@@ -88,11 +113,10 @@ namespace Text_wow.Event
                             Console.WriteLine("Vad vill du göra nu?");
                         }
                         continue;
-                    default:
-                        Console.WriteLine("ogiltigt val");
-                        break;
+                    
                 }
             }
+            Console.CursorVisible = true;
         }
     }
 }

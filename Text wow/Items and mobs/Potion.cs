@@ -31,7 +31,7 @@ namespace Text_wow
             if (player._health > 100)
             {
                 player._health = 100;
-                Console.WriteLine($"Dudricker glupskt men kan inte gå över din max health.");
+                Console.WriteLine($"Du dricker glupskt men kan inte gå över din max health.");
             }
             _amount--;
             Console.WriteLine($"Du har blivit helad! Din nuvarande hälsa är {player._health} HP.");

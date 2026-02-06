@@ -9,7 +9,7 @@ namespace Text_wow.Tools
         public static void StartCountDown()
         {
             Console.Clear();
-            var currentColor = Console.ForegroundColor;
+            
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(@"'########:'########:'##::::'##:'########:'##:::::'##::'#######::'##:::::'##:
 ... ##..:: ##.....::. ##::'##::... ##..:: ##:'##: ##:'##.... ##: ##:'##: ##:
