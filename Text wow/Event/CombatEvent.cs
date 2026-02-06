@@ -38,43 +38,18 @@ namespace Text_wow.Event
         {
             int grenar = 50;
             Console.WriteLine("Dina äventyr tar dig vidare i grottan till du går runt ett hörn och plötsligt inte kommer längre.");
-            Console.WriteLine("Din väg är täckt av taggiga grenar. Vad vill du göra?\n  ");
-            ConsoleKeyInfo key;
-            int option = 1;
+            Console.WriteLine("Din väg är täckt av taggiga grenar. Vad vill du göra?\n  ");           
             bool stuckBehindBush = true;
-            bool isSelected = false;
-            (int left, int top) = Console.GetCursorPosition();
-            string color = "\u001b[36m-> ";
-            Console.CursorVisible = false;
+
             while (stuckBehindBush)
             {
-                isSelected = false;
-                while (!isSelected)
-                {
-                    Console.SetCursorPosition(left, top);
-                    Console.WriteLine($"{(option == 1? color : "   ")}1. \u001b[0mFörsök krypa igenom och riksera att ta skada. ditt hp är ju nu {player._health}");
-                    Console.WriteLine($"{(option == 2 ? color : "   ")}2. \u001b[0mTa en potion. Du har just nu {potion._amount}st {potion._potionType} kvar");
-                    Console.WriteLine($"{(option == 3 ? color : "   ")}3. \u001b[0mSlå sönder grenarna med din {weapon.weaponName}");
+                (int left, int top) = Console.GetCursorPosition();
 
-                    key = Console.ReadKey(true);
+                int choice = ShowMenu(left, top, player._health, potion, weapon);   
 
-                    switch (key.Key)
-                    {
-                        case ConsoleKey.DownArrow:
-                            option = (option == 3 ? 1 : option +1);
-                            break;
-                        case ConsoleKey.UpArrow:
-                            option= (option == 1 ? 3 : option -1);
-                            break;
-                        case ConsoleKey.Enter:
-                            isSelected = true;
-                            break;
-                        
-                    }
-                }
                 Console.ForegroundColor = ConsoleColor.Green;
- 
-                switch (option)
+
+                switch (choice)
                 {
 
                     case 1:
@@ -113,11 +88,55 @@ namespace Text_wow.Event
                             Console.WriteLine("Vad vill du göra nu?");
                         }
                         continue;
-                    
+
                 }
             }
             Console.CursorVisible = true;
         }
+        static int ShowMenu(
+    int left,
+    int top,
+    int playerHealth,
+    Potion potion,
+    Weapon weapon)
+        {
+            ConsoleKeyInfo key;
+            int option = 1;
+            bool isSelected = false;
+            string color = "-> \u001b[36m";
+
+            Console.CursorVisible = false;
+
+            while (!isSelected)
+            {
+                Console.SetCursorPosition(left, top);
+
+                Console.WriteLine($"{(option == 1 ? color : "   ")}1. \u001b[0mFörsök krypa igenom och riskera att ta skada. Ditt HP är {playerHealth}");
+                Console.WriteLine($"{(option == 2 ? color : "   ")}2. \u001b[0mTa en potion. Du har {potion._amount}{potion._potionType} kvar");
+                Console.WriteLine($"{(option == 3 ? color : "   ")}3. \u001b[0mSlå sönder grenarna med din {weapon.weaponName}");
+
+                key = Console.ReadKey(true);
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        option = option == 3 ? 1 : option + 1;
+                        break;
+
+                    case ConsoleKey.UpArrow:
+                        option = option == 1 ? 3 : option - 1;
+                        break;
+
+                    case ConsoleKey.Enter:
+                        isSelected = true;
+                        break;
+                }
+            }
+
+            Console.CursorVisible = true;
+            return option;
+        }
+
     }
 }
 
