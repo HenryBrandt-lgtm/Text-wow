@@ -1,5 +1,4 @@
 ﻿using Text_wow.Factories;
-using Text_wow.Mobs;
 using Text_wow.PlayerStuff;
 using Text_wow.Potions;
 using Text_wow.Tools;
@@ -18,7 +17,7 @@ namespace Text_wow
             IPlayer player = MobFactory.CreatePlayer();
             IPotion healthPotion = ItemFactory.CreateHealthPotion();
             Smörkniv smörkniv = WeaponFactory.CreateSmörkniv();
-            
+
 
             Console.WriteLine("Välkommen till text WoW!");
             player.Profile();

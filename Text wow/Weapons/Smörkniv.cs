@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Text_wow.Mobs;
-using Text_wow.PlayerStuff;
-
-namespace Text_wow
+﻿namespace Text_wow
 {
     public class Smörkniv : IWeapon
     {
@@ -21,6 +15,6 @@ namespace Text_wow
         {
             Console.WriteLine("Smörkniven är från djupaste skogarna i dalarna och kan inte gå sönder");
         }
-    
+
     }
 }
