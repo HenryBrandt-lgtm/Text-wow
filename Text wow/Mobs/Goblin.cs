@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Text_wow
+namespace Text_wow.Mobs
 {
-    internal class Monster
+    public class Goblin : IMonster
     {
-        public string _name {  get; set; }
-        public int _health { get; set; } = 30;
-
+        public string _name { get; set; }
+        public int _health { get; set; } 
         public int _dmg { get; set; }
 
-        public Monster(string name, int health, int dmg)
+        public Goblin()
         {
-            _name = name;
-            _health = health;
-            _dmg = dmg;
+            _name = "Goblin";
+            _health = 30;
+            _dmg = 5;
         }
-        public Monster(int hp) 
-        {
-            _health = hp;
-        }
+
 
         public void Death()
         {

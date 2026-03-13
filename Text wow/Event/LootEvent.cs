@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Text_wow.Factories;
+using Text_wow.Mobs;
 
 namespace Text_wow.Event
 {
     internal class LootEvent
     {
-        public void GoblinsLoot(Monster monster, Weapon weapon)
+        public IWeapon GoblinsLoot(IMonster monster, IWeapon weapon)
         {
+            IWeapon klubba = WeaponFactory.CreateKlubba();
+
             Console.WriteLine($"{monster._name} droppade en klubba med 15dmg");
             Console.WriteLine($"\nDitt tidigare vapen är {weapon.weaponName} med {weapon.damage}dmg");
             Console.WriteLine("För att plocka upp vapnet skriv \"ta upp\"");
@@ -16,9 +20,8 @@ namespace Text_wow.Event
 
             if (pickUp.ToLower() == "ta upp")
             {
-                weapon.weaponName = "Klubba";
-                weapon.damage = 15;
-                Console.WriteLine("\nDu plockar upp Klubban och utrustar den.");
+                weapon = klubba;
+                Console.WriteLine($"\nDu plockar upp {weapon.weaponName} och utrustar den. Du gör nu {weapon.damage}dmg");
             }
             else
             {
@@ -26,6 +29,7 @@ namespace Text_wow.Event
             }
             Console.ReadKey();
             Console.Clear();
+            return weapon;
         }
     }
 }

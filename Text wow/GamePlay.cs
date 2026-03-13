@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Text_wow.Event;
+﻿using Text_wow.Event;
+using Text_wow.Factories;
+using Text_wow.Mobs;
 using Text_wow.PlayerStuff;
+using Text_wow.Potions;
 
 namespace Text_wow
 {
     internal class GamePlay
     {
-        private Player _player;
-        private Monster _monster;
-        private Weapon _weapon;
-        private Potion _potion;
-
-        
-        public GamePlay(Player player, Monster monster, Weapon weapon, Potion potion)
+        private IPlayer _player;
+        private IMonster _goblin = MobFactory.CreateGoblin();
+        private IPotion _potion;
+        private Smörkniv _defultweapon;
+       
+        public GamePlay(IPlayer player, IPotion potion, Smörkniv smöras)
         {
             _player = player;
-            _monster = monster;
-            _weapon = weapon;
             _potion = potion;
+            _defultweapon = smöras;
+        
         }
 
         public void Start()
         {
-            new ChestEvent().FirstChestEvent(_weapon);
-            new CombatEvent().CombatEventvsGoblin(_monster, _weapon, _player);
-            new LootEvent().GoblinsLoot(_monster, _weapon);
-            new CombatEvent().CrawlThorughBushes(_player, _potion, _weapon);
-        } 
+
+            var weapon = new ChestEvent().FirstChestEvent( _defultweapon);
+            new CombatEvent().CombatEventvsGoblin(_goblin, weapon, _player);
+            weapon = new LootEvent().GoblinsLoot(_goblin, weapon);
+            new CombatEvent().CrawlThorughBushes(_player, _potion, weapon, _defultweapon);
+        }
     }
 }

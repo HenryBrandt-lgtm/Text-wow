@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Text;
 using Text_wow.PlayerStuff;
 
-namespace Text_wow
+namespace Text_wow.Potions
 {
-    internal class Potion
+    public class HealthPotion : IPotion
     {
         public string _potionType { get; set; }
         public int _healAmount { get; set; }
 
         public int _amount { get; set; }
 
-        public Potion(string potionType, int healAmount)
+        public HealthPotion()
         {
-            _potionType = potionType;
-            _healAmount = healAmount;
+            _potionType = "HealthPotion";
+            _healAmount = 20;
             _amount = 3;
         }
-        public void UsePotion(Player player)
+        public void UsePotion(IPlayer player)
         {
 
             if (_amount <= 0)
@@ -35,7 +35,7 @@ namespace Text_wow
             }
             _amount--;
             Console.WriteLine($"Du har blivit helad! Din nuvarande hälsa är {player._health} HP.");
-            Console.WriteLine($"Du har {_amount}st {_potionType} kvar");                           
+            Console.WriteLine($"Du har {_amount}st {_potionType} kvar");
         }
     }
 }
